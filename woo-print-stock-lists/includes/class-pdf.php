@@ -140,7 +140,7 @@ return (bool) file_put_contents( $file_path, $bytes );
  */
 private static function enc( string $utf8 ): string {
 if ( function_exists( 'iconv' ) ) {
-$result = iconv( 'UTF-8', 'ISO-8859-2//TRANSLIT//IGNORE', $utf8 );
+$result = iconv( 'UTF-8', 'ISO-8859-2//TRANSLIT', $utf8 );
 if ( false !== $result ) {
 return $result;
 }
