@@ -38,8 +38,11 @@ $this->AddPage();
 }
 }
 
-public function get_line_count( float $width, string $text ): int {
-if ( ! isset( $this->CurrentFont ) ) {
+/**
+ * Returns wrapped line count for single-byte text already encoded for FPDF.
+ */
+public function get_encoded_line_count( float $width, string $encoded_text ): int {
+if ( ! isset( $this->CurrentFont['cw'] ) || ! is_array( $this->CurrentFont['cw'] ) ) {
 return 1;
 }
 
@@ -49,11 +52,11 @@ if ( $width <= 0 ) {
 $width = $this->w - $this->rMargin - $this->x;
 }
 
-$wmax = ( $width - 2 * $this->cMargin ) * 1000 / $this->FontSize;
-$text = str_replace( "\r", '', $text );
-$nb   = strlen( $text );
+$wmax        = ( $width - 2 * $this->cMargin ) * 1000 / $this->FontSize;
+$encoded_text = str_replace( "\r", '', $encoded_text );
+$nb          = strlen( $encoded_text );
 
-if ( $nb > 0 && "\n" === $text[ $nb - 1 ] ) {
+if ( $nb > 0 && "\n" === $encoded_text[ $nb - 1 ] ) {
 $nb--;
 }
 
@@ -64,7 +67,7 @@ $l   = 0;
 $nl  = 1;
 
 while ( $i < $nb ) {
-$char = $text[ $i ];
+$char = $encoded_text[ $i ];
 
 if ( "\n" === $char ) {
 $i++;
@@ -172,9 +175,7 @@ $sku   = (string) ( $row['sku']   ?? '' );
 $name  = (string) ( $row['name']  ?? '' );
 $stock = self::format_stock( (float) ( $row['stock'] ?? 0 ) );
 $encoded_name = self::enc( $name );
-$row_height   = self::LINE_H * $pdf->get_line_count( $col_name, $encoded_name );
-$row_x        = $pdf->GetX();
-$row_y        = $pdf->GetY();
+$row_height   = self::LINE_H * $pdf->get_encoded_line_count( $col_name, $encoded_name );
 
 $pdf->ensure_space( $row_height );
 $row_x = $pdf->GetX();
