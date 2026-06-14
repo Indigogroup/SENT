@@ -1,0 +1,118 @@
+/* Woo Print Stock Lists – Admin Styles */
+
+.woo-psl-wrap {
+	max-width: 960px;
+}
+
+.woo-psl-panel {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	box-shadow: 0 1px 1px rgba(0,0,0,.04);
+	padding: 20px 24px;
+	margin-top: 20px;
+}
+
+.woo-psl-panel h2 {
+	margin-top: 0;
+	padding-top: 0;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	margin-bottom: 16px;
+}
+
+/* ── Category tree ── */
+
+.woo-psl-tree {
+	padding: 4px 0;
+}
+
+.woo-psl-cat-list {
+	margin: 0;
+	padding: 0 0 0 4px;
+	list-style: none;
+}
+
+.woo-psl-cat-list.woo-psl-subtree {
+	padding-left: 24px;
+	border-left: 2px solid #ddd;
+	margin-left: 8px;
+	margin-top: 4px;
+}
+
+.woo-psl-cat-item {
+	margin: 4px 0;
+}
+
+.woo-psl-cat-item label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.woo-psl-cat-item label:hover {
+	color: #2271b1;
+}
+
+.woo-psl-cat-item input[type="checkbox"] {
+	margin: 0;
+	flex-shrink: 0;
+}
+
+/* ── Messages ── */
+
+#woo-psl-messages {
+	margin-top: 12px;
+}
+
+.woo-psl-notice {
+	color: #646970;
+	font-style: italic;
+}
+
+.woo-psl-msg-success {
+	color: #1d7f4d;
+	font-weight: 600;
+}
+
+.woo-psl-msg-error {
+	color: #cc1818;
+	font-weight: 600;
+}
+
+/* ── History table ── */
+
+.woo-psl-history-table {
+	margin-top: 10px;
+}
+
+.woo-psl-history-table th,
+.woo-psl-history-table td {
+	vertical-align: middle;
+}
+
+.woo-psl-history-table td:last-child {
+	width: 100px;
+}
+
+.woo-psl-history-table td:nth-child(3) {
+	width: 140px;
+	white-space: nowrap;
+}
+
+.woo-psl-history-table td:first-child {
+	white-space: nowrap;
+	width: 140px;
+}
+
+.woo-psl-delete {
+	color: #cc1818 !important;
+	border-color: #cc1818 !important;
+}
+
+.woo-psl-delete:hover {
+	background: #cc1818 !important;
+	color: #fff !important;
+}
