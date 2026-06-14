@@ -13,7 +13,7 @@ require_once __DIR__ . '/vendor/fpdf/fpdf.php';
 class Woo_PSL_Pdf_Doc extends FPDF {
 
 /** @var float Column width: SKU (mm). */
-public float $col_sku   = 30;
+public float $col_sku   = 50;
 /** @var float Column width: Name (mm). */
 public float $col_name  = 0;
 /** @var float Column width: Stock (mm). */
@@ -123,8 +123,8 @@ return max( 1, $nl );
  */
 class Woo_PSL_Pdf {
 
-// Column widths (mm).
-const COL_SKU   = 30;
+// Column widths (mm). COL_SKU = 50 mm accommodates ~25 characters at 10 pt LiberationSans.
+const COL_SKU   = 50;
 const COL_STOCK = 22;
 const MARGIN    = 15;
 const PAGE_W    = 210; // A4 width in mm

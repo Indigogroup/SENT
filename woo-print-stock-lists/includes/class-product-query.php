@@ -56,6 +56,11 @@ class Woo_PSL_Product_Query {
 				continue;
 			}
 
+			// Exclude specific non-sellable technical products by exact name.
+			if ( 'Skippy Custom Supplier Order' === $product->get_name() ) {
+				continue;
+			}
+
 			if ( $product->is_type( 'variable' ) ) {
 				$rows = array_merge( $rows, self::get_variation_rows( $product ) );
 			} elseif ( $product->is_type( 'simple' ) ) {
