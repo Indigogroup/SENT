@@ -32,6 +32,11 @@ $this->Line( $this->lMargin, $this->GetY(), $this->w - $this->rMargin, $this->Ge
 $this->Ln( 1 );
 }
 
+/**
+ * Starts a new page when the current row would exceed the page break trigger.
+ *
+ * @param float $height Required row height in millimetres.
+ */
 public function ensure_space( float $height ): void {
 if ( $this->GetY() + $height > $this->PageBreakTrigger ) {
 $this->AddPage();
@@ -40,6 +45,10 @@ $this->AddPage();
 
 /**
  * Returns wrapped line count for single-byte text already encoded for FPDF.
+ *
+ * @param float  $width        Available cell width in millimetres.
+ * @param string $encoded_text Single-byte ISO-8859-2 text already prepared for FPDF.
+ * @return int
  */
 public function get_encoded_line_count( float $width, string $encoded_text ): int {
 if ( ! isset( $this->CurrentFont['cw'] ) || ! is_array( $this->CurrentFont['cw'] ) ) {
