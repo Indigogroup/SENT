@@ -163,7 +163,7 @@ class Woo_PSL_Pdf {
 	}
 
 	private static function format_stock( float $v ): string {
-		return $v == (int) $v ? (string) (int) $v : number_format( $v, 2, ',', ' ' );
+		return fmod( $v, 1.0 ) === 0.0 ? (string) (int) $v : number_format( $v, 2, ',', ' ' );
 	}
 
 	// -----------------------------------------------------------------------

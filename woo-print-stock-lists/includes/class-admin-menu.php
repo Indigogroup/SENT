@@ -67,10 +67,10 @@ class Woo_PSL_Admin_Menu {
 	 * @param int   $depth  Current nesting depth (0 = top level).
 	 */
 	public function render_tree_nodes( array $nodes, int $depth ): void {
-		$indent_class = $depth > 0 ? ' woo-psl-subtree' : ' woo-psl-root-tree';
-		$hidden_attr  = $depth > 0 ? ' style="display:none;"' : '';
+		// Root lists have class woo-psl-root-tree; sub-lists have woo-psl-subtree (hidden via CSS).
+		$extra_class = $depth > 0 ? ' woo-psl-subtree' : ' woo-psl-root-tree';
 
-		echo '<ul class="woo-psl-cat-list' . esc_attr( $indent_class ) . '"' . $hidden_attr . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<ul class="woo-psl-cat-list' . esc_attr( $extra_class ) . '">';
 
 		foreach ( $nodes as $node ) {
 			$has_children = ! empty( $node['children'] );

@@ -38,8 +38,18 @@ class Woo_PSL_Generator {
 		if ( ! file_exists( $dir ) ) {
 			wp_mkdir_p( $dir );
 			// Protect directory from direct HTTP access.
+			// Supports both Apache 2.2 and Apache 2.4+ syntax.
+			$htaccess = "# Apache 2.4+\n"
+				. "<IfModule mod_authz_core.c>\n"
+				. "    Require all denied\n"
+				. "</IfModule>\n"
+				. "# Apache 2.2\n"
+				. "<IfModule !mod_authz_core.c>\n"
+				. "    Order Deny,Allow\n"
+				. "    Deny from all\n"
+				. "</IfModule>\n";
 			// phpcs:ignore WordPress.WP.AlternativeFunctions
-			file_put_contents( $dir . '/.htaccess', "Order Deny,Allow\nDeny from all\n" );
+			file_put_contents( $dir . '/.htaccess', $htaccess );
 			// phpcs:ignore WordPress.WP.AlternativeFunctions
 			file_put_contents( $dir . '/index.php', '<?php // Silence is golden.' );
 		}

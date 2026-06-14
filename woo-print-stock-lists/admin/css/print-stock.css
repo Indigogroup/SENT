@@ -116,3 +116,13 @@
 	background: #cc1818 !important;
 	color: #fff !important;
 }
+
+/* ── Visibility helpers ── */
+
+.woo-psl-hidden {
+	display: none !important;
+}
+
+.woo-psl-cat-list.woo-psl-subtree {
+	display: none;
+}

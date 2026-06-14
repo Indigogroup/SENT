@@ -6,7 +6,7 @@
 
 	/**
 	 * When a checkbox is checked/unchecked:
-	 * – If checked: show its immediate child <ul> (if any).
+	 * – If checked: reveal its immediate child <ul> (if any).
 	 * – If unchecked: hide and uncheck ALL descendants.
 	 */
 	$( '#woo-psl-tree' ).on( 'change', 'input[type="checkbox"]', function () {
@@ -15,14 +15,13 @@
 		var $sub  = $item.children( 'ul.woo-psl-subtree' ).first();
 
 		if ( $cb.is( ':checked' ) ) {
-			if ( $sub.length ) {
-				$sub.slideDown( 160 );
-			}
+			$sub.removeClass( 'woo-psl-subtree' ).addClass( 'woo-psl-subtree-open' ).slideDown( 160 );
 		} else {
-			// Hide and uncheck all descendants.
 			$sub.slideUp( 160, function () {
+				// Re-hide and collapse all nested sublists too.
+				$sub.find( '.woo-psl-subtree-open' ).addClass( 'woo-psl-subtree' ).removeClass( 'woo-psl-subtree-open' ).hide();
+				$sub.addClass( 'woo-psl-subtree' ).removeClass( 'woo-psl-subtree-open' );
 				$sub.find( 'input[type="checkbox"]' ).prop( 'checked', false );
-				$sub.find( 'ul.woo-psl-subtree' ).hide();
 			} );
 		}
 	} );
@@ -84,8 +83,8 @@
 		var $empty = $( '#woo-psl-empty-history' );
 		var $body  = $( '#woo-psl-history-body' );
 
-		$empty.hide();
-		$table.show();
+		$empty.addClass( 'woo-psl-hidden' );
+		$table.removeClass( 'woo-psl-hidden' );
 		$body.prepend( rowHtml );
 	}
 
@@ -127,8 +126,8 @@
 
 	function checkEmpty() {
 		if ( $( '#woo-psl-history-body tr' ).length === 0 ) {
-			$( '#woo-psl-history-table' ).hide();
-			$( '#woo-psl-empty-history' ).show();
+			$( '#woo-psl-history-table' ).addClass( 'woo-psl-hidden' );
+			$( '#woo-psl-empty-history' ).removeClass( 'woo-psl-hidden' );
 		}
 	}
 

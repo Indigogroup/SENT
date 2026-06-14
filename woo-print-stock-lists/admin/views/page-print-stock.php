@@ -7,8 +7,9 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-$category_tree = Woo_PSL_Category_Tree::get_tree();
-$history       = Woo_PSL_DB::get_all();
+$category_tree  = Woo_PSL_Category_Tree::get_tree();
+$history        = Woo_PSL_DB::get_all();
+$history_empty  = empty( $history );
 ?>
 <div class="wrap woo-psl-wrap">
 <h1><?php esc_html_e( 'Drukuj stany', 'woo-print-stock-lists' ); ?></h1>
@@ -40,11 +41,11 @@ $history       = Woo_PSL_DB::get_all();
 <div class="woo-psl-panel" id="woo-psl-history-panel">
 <h2><?php esc_html_e( 'Wygenerowane listy', 'woo-print-stock-lists' ); ?></h2>
 
-<p class="woo-psl-notice" id="woo-psl-empty-history"<?php echo empty( $history ) ? '' : ' style="display:none;"'; ?>>
+<p class="woo-psl-notice<?php echo $history_empty ? '' : ' woo-psl-hidden'; ?>" id="woo-psl-empty-history">
 <?php esc_html_e( 'Brak wygenerowanych list.', 'woo-print-stock-lists' ); ?>
 </p>
 
-<table class="widefat striped woo-psl-history-table" id="woo-psl-history-table"<?php echo empty( $history ) ? ' style="display:none;"' : ''; ?>>
+<table class="widefat striped woo-psl-history-table<?php echo $history_empty ? ' woo-psl-hidden' : ''; ?>" id="woo-psl-history-table">
 <thead>
 <tr>
 <th><?php esc_html_e( 'Data', 'woo-print-stock-lists' ); ?></th>
