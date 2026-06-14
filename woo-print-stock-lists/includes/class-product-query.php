@@ -58,7 +58,7 @@ class Woo_PSL_Product_Query {
 
 			if ( $product->is_type( 'variable' ) ) {
 				$rows = array_merge( $rows, self::get_variation_rows( $product ) );
-			} else {
+			} elseif ( $product->is_type( 'simple' ) ) {
 				$row = self::get_simple_row( $product );
 				if ( $row ) {
 					$rows[] = $row;
